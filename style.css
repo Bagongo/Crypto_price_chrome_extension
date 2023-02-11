@@ -1,6 +1,6 @@
 body {
-    background-color: #80b0aa;
-    color: black;
+    background-color: #1B73E8;
+    color: white;
     padding: 0;
     margin: 0;
 }
@@ -25,11 +25,11 @@ body {
 
 .price-cell {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.price-cell > h3 {
-    display: inline;
+.price-cell > h3:first-of-type {
+    margin-right: 8px;
 }
