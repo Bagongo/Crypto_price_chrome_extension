@@ -9,6 +9,9 @@
     "background": {
         "service_worker": "background.js"
       },
+      "permissions": [
+        "alarms"
+      ],
     "icons": {
         "128": "logo.png"
     }
