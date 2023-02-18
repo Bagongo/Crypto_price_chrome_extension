@@ -24,4 +24,45 @@ const refreshBadge = () => {
     });
 };
 
+const resetApiCalls = () => {
+    chrome.storage.local.set({"apiCalls": 0});
+};
+
+let apiCallsPromise = Promise.resolve(); // Initialize a Promise that is already resolved
+const updateApiCalls = () => {
+  apiCallsPromise = apiCallsPromise.then(() => {
+    return new Promise((resolve, reject) => {
+      chrome.storage.local.get('apiCalls', function(items) {
+        const newApiCalls = items.apiCalls ? items.apiCalls + 1 : 1;
+        chrome.storage.local.set({ 'apiCalls': newApiCalls }, function() {
+          console.log('Updated apiCalls:', newApiCalls); // Add a console.log statement here
+          resolve(newApiCalls);
+        });
+      });
+    });
+  });
+  
+  return apiCallsPromise; // Return the Promise so that callers can wait for it to resolve
+};  
+
+const printApiCalls = () => {
+    chrome.storage.local.get(["apiCalls"]).then((items) => {
+      console.log("apicalls: " + items.apiCalls);
+    });
+};
+  
+
 refreshBadge();
+
+//initiate stored var for the number of the api is called
+resetApiCalls();
+updateApiCalls();
+updateApiCalls();
+updateApiCalls();
+updateApiCalls();
+updateApiCalls();
+
+
+
+
+

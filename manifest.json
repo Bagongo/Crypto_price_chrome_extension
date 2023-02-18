@@ -10,7 +10,7 @@
         "service_worker": "background.js"
       },
       "permissions": [
-        "alarms"
+        "storage"
       ],
     "icons": {
         "128": "logo.png"
