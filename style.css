@@ -24,6 +24,7 @@ body {
     align-items: center;
     max-height: 45vh;
     overflow: scroll;
+    margin: 15px 0 0 0;
 }
 
 .price-cell {
@@ -31,7 +32,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 2px;
+    margin: 5px;
     text-shadow: 2px 2px 5px black;
 }
 
@@ -40,12 +41,13 @@ body {
     color: #48dde8;
 }
 
-.banner {
+footer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: whitesmokes;
+    margin: 15px 0 -15px 0;
 }
 
 .updater {
@@ -56,7 +58,12 @@ body {
     text-align: center;
 }
 
+#update-time {
+    margin: 0 0 0 4px;
+}
+
 .credit {
+    margin-top: -15px;
     color: #48dde8;
 } 
 
