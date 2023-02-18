@@ -22,6 +22,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-height: 45vh;
+    overflow: scroll;
 }
 
 .price-cell {
@@ -38,7 +40,23 @@ body {
     color: #48dde8;
 }
 
-#update-banner {
+.banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     color: whitesmokes;
 }
+
+.updater {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.credit {
+    color: #48dde8;
+} 
 

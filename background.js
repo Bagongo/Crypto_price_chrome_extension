@@ -20,12 +20,18 @@ const refreshBadge = () => {
     let url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&precision=2"
     fetch(url).then(response => response.json()).then(response => {
         let price = formatPrice(response["bitcoin"]["usd"]);
+        let currTime = new Date();
+        console.log("badge reset at: " + currTime.toLocaleString());
         chrome.action.setBadgeText({text: price});
     });
 };
 
 const resetApiCalls = () => {
-    chrome.storage.local.set({"apiCalls": 0});
+    return new Promise((resolve, reject) => {
+      chrome.storage.local.set({ apiCalls: 0 }, () => {
+        resolve("Api calls reset");
+      });
+    });
 };
 
 let apiCallsPromise = Promise.resolve(); // Initialize a Promise that is already resolved
@@ -41,26 +47,26 @@ const updateApiCalls = () => {
       });
     });
   });
-  
   return apiCallsPromise; // Return the Promise so that callers can wait for it to resolve
 };  
 
-const printApiCalls = () => {
-    chrome.storage.local.get(["apiCalls"]).then((items) => {
-      console.log("apicalls: " + items.apiCalls);
+const getApiCalls = () => {
+    return new Promise((resolve, reject) => {
+      chrome.storage.local.get("apiCalls", (result) => {
+        if (chrome.runtime.lastError) {
+          reject(chrome.runtime.lastError);
+        } else {
+          console.log(result.apiCalls)  
+          resolve("returned apiCalls" + result.apiCalls);
+        }
+      });
     });
-};
-  
+}
 
+//handles badge refreshing
+const badgeRefreshRate = 60;
 refreshBadge();
-
-//initiate stored var for the number of the api is called
-resetApiCalls();
-updateApiCalls();
-updateApiCalls();
-updateApiCalls();
-updateApiCalls();
-updateApiCalls();
+setInterval(refreshBadge, 1000 * badgeRefreshRate);
 
 
 
