@@ -17,14 +17,15 @@ body {
     margin: 15px;
 }
 
-.coin-price {
+.coin-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 0 15px 0 15px;
+    margin: 15px 5px 0 5px;
     max-height: 45vh;
-    overflow: scroll;
-    margin: 15px 0 0 0;
+    overflow-y:scroll;
 }
 
 .price-cell {
@@ -32,7 +33,6 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 5px;
     text-shadow: 2px 2px 5px black;
 }
 
@@ -47,7 +47,7 @@ footer {
     align-items: center;
     justify-content: center;
     color: whitesmokes;
-    margin: 15px 0 -15px 0;
+    margin: 15px 0 -20px 0;
 }
 
 .updater {
