@@ -29,7 +29,7 @@ const populateCoins = () =>{
 const lastUpdate = () => {
    let updateSpan = document.getElementById("update-time");
    let currTime = new Date();
-   updateSpan.innerHTML = currTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});;
+   updateSpan.innerHTML = currTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 }
 
 const generateCoinSlots = (data) => {
@@ -48,8 +48,8 @@ const generateCoinSlots = (data) => {
   });
 };
 
-const getTop3 = () => {
-  fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=3&page=1&sparkline=false')
+const getTopCoins = (num) => {
+  fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${num}&page=1&sparkline=false`)
   .then(response => response.json())
   .then(data => {
     console.log(data);
@@ -58,7 +58,9 @@ const getTop3 = () => {
   .catch(error => console.error(error));
 };
 
-let top5 = getTop3();
+console.log("opened 1")
+
+let top5 = getTopCoins(5);
 //populateCoins();
 
 
