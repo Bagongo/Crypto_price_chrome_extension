@@ -6,6 +6,7 @@ chrome.runtime.onInstalled.addListener(function(details){
         var thisVersion = chrome.runtime.getManifest().version;
         console.log("Updated from " + details.previousVersion + " to " + thisVersion + "!");
     }
+    chrome.action.setBadgeBackgroundColor({ color:'#1B73E8'});
 });
 
 //formats the price to be shown in proper shortened version on the ext badge  
