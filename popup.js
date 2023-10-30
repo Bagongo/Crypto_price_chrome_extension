@@ -1,3 +1,5 @@
+let numOfCoins = 3;
+
 const generateURL = (coin) => {
     return `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd&precision=2`
 };
@@ -46,7 +48,14 @@ const generateCoinSlots = (data) => {
     box.appendChild(slot);
     console.log(coin.name + " " + coin.current_price);
   });
+  lastUpdate();
 };
+
+const updateTitle = (num) => {
+  let title = document.querySelector("#title > span:first-of-type");
+  title.innerHTML = num;
+  console.log(num, title);
+}
 
 const getTopCoins = (num) => {
   fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${num}&page=1&sparkline=false`)
@@ -58,9 +67,8 @@ const getTopCoins = (num) => {
   .catch(error => console.error(error));
 };
 
-console.log("opened 1")
-
-let top5 = getTopCoins(5);
+getTopCoins(numOfCoins);
+//updateTitle(numOfCoins);
 //populateCoins();
 
 
