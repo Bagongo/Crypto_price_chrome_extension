@@ -4,30 +4,6 @@ const generateURL = (coin) => {
     return `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd&precision=2`
 };
 
-const callAPI = (url, coin) => {
-    fetch(url)
-      .then(response => response.json())
-      .then(response => {
-        let cell = document.getElementById(coin);
-        let price = String(response[coin]["usd"]);
-        cell.innerText = price;
-        console.log(coin + " updated")
-      })
-      .catch(error => {
-        console.error("Error fetching API:", error);
-      });
-  };
-
-const populateCoins = () =>{
-    console.log('Populating coins...');
-    document.querySelectorAll('.coin').forEach(function(span) {
-        let coin = String(span.id);
-        let url = generateURL(coin)
-        callAPI(url, coin); 
-    }); 
-    lastUpdate();
-};
-
 const lastUpdate = () => {
    let updateSpan = document.getElementById("update-time");
    let currTime = new Date();
@@ -38,7 +14,7 @@ const generateCoinSlots = (data) => {
   data.forEach((coin) => {
     let id = coin.id;
     let name = coin.name;
-    let price = coin.current_price;
+    let price = (Math.round(coin.current_price * 100) / 100).toFixed(2);
     let box = document.getElementById("coin-box");
     let priceCell = document.createElement("div");
     priceCell.classList.add("price-cell");
@@ -53,7 +29,7 @@ const generateCoinSlots = (data) => {
     priceH3.appendChild(priceSpan);
     priceCell.appendChild(priceH3);
     box.appendChild(priceCell);
-    console.log(coin.name + " " + coin.current_price);
+    //console.log(coin.name + " " + coin.current_price);
   });
   lastUpdate();
 };
@@ -61,14 +37,12 @@ const generateCoinSlots = (data) => {
 const updateTitle = (num) => {
   let title = document.querySelector("#title > span:first-of-type");
   title.innerText = num;
-  console.log(num, title);
 }
 
 const getTopCoins = (num) => {
   fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${num}&page=1&sparkline=false`)
   .then(response => response.json())
   .then(data => {
-    console.log(data);
     generateCoinSlots(data);
   })
   .catch(error => console.error(error));
