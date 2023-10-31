@@ -15,6 +15,9 @@ const generateCoinSlots = (data) => {
     let id = coin.id;
     let name = coin.name;
     let price = (Math.round(coin.current_price * 100) / 100).toFixed(2);
+    price = Number(price).toLocaleString();
+    console.log(typeof(price));
+    price = price.toLocaleString();
     let box = document.getElementById("coin-box");
     let priceCell = document.createElement("div");
     priceCell.classList.add("price-cell");
