@@ -53,8 +53,6 @@ const getTopCoins = (num) => {
 
 getTopCoins(numOfCoins);
 //updateTitle(numOfCoins);
-//populateCoins();
-
 
 
 
