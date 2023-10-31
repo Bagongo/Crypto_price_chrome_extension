@@ -10,7 +10,7 @@ const callAPI = (url, coin) => {
       .then(response => {
         let cell = document.getElementById(coin);
         let price = String(response[coin]["usd"]);
-        cell.innerHTML = price;
+        cell.innerText = price;
         console.log(coin + " updated")
       })
       .catch(error => {
@@ -31,7 +31,7 @@ const populateCoins = () =>{
 const lastUpdate = () => {
    let updateSpan = document.getElementById("update-time");
    let currTime = new Date();
-   updateSpan.innerHTML = currTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+   updateSpan.innerText = currTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 }
 
 const generateCoinSlots = (data) => {
@@ -53,7 +53,7 @@ const generateCoinSlots = (data) => {
 
 const updateTitle = (num) => {
   let title = document.querySelector("#title > span:first-of-type");
-  title.innerHTML = num;
+  title.innerText = num;
   console.log(num, title);
 }
 
