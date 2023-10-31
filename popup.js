@@ -49,13 +49,9 @@ const generateCoinSlots = (data) => {
     let priceSpan = document.createElement("span");
     priceSpan.classList.add("coin");
     priceSpan.setAttribute("id", id);
-    priceSpan.innerText = "$ " + price;
+    priceSpan.innerText = "$" + price;
     priceH3.appendChild(priceSpan);
     priceCell.appendChild(priceH3);
-    // slot.innerHTML = `<div class="price-cell">
-    //                     <h3>${name}</h3>
-    //                     <h3>$<span class="coin" id="${id}">${price}</span></h3>
-    //                   </div>`;
     box.appendChild(priceCell);
     console.log(coin.name + " " + coin.current_price);
   });
