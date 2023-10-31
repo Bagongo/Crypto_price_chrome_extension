@@ -12,6 +12,9 @@
       },
       "permissions": [
       ],
+      "host_permissions": [
+        "https://api.coingecko.com/"
+      ],
     "icons": {
         "128": "logo.png"
     }
