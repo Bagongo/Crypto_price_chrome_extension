@@ -1,9 +1,3 @@
-let numOfCoins = 3;
-
-const generateURL = (coin) => {
-    return `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd&precision=2`
-};
-
 const lastUpdate = () => {
    let updateSpan = document.getElementById("update-time");
    let currTime = new Date();
@@ -32,7 +26,6 @@ const generateCoinSlots = (data) => {
     priceH3.appendChild(priceSpan);
     priceCell.appendChild(priceH3);
     box.appendChild(priceCell);
-    //console.log(coin.name + " " + coin.current_price);
   });
   lastUpdate();
 };
@@ -51,7 +44,12 @@ const getTopCoins = (num) => {
   .catch(error => console.error(error));
 };
 
-getTopCoins(numOfCoins);
+chrome.storage.local.get("coinData", function(result) {
+  console.log(result);
+  generateCoinSlots(result.coinData)
+});
+
+
 //updateTitle(numOfCoins);
 
 
