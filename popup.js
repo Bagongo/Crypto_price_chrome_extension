@@ -1,7 +1,6 @@
-const lastUpdate = () => {
+const lastUpdate = (updateTime) => {
    let updateSpan = document.getElementById("update-time");
-   let currTime = new Date();
-   updateSpan.innerText = currTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+   updateSpan.innerText = updateTime;
 }
 
 const generateCoinSlots = (data) => {
@@ -27,28 +26,17 @@ const generateCoinSlots = (data) => {
     priceCell.appendChild(priceH3);
     box.appendChild(priceCell);
   });
-  lastUpdate();
 };
 
 const updateTitle = (num) => {
   let title = document.querySelector("#title > span:first-of-type");
   title.innerText = num;
 }
-
-const getTopCoins = (num) => {
-  fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${num}&page=1&sparkline=false`)
-  .then(response => response.json())
-  .then(data => {
-    generateCoinSlots(data);
-  })
-  .catch(error => console.error(error));
-};
-
-chrome.storage.local.get("coinData", function(result) {
+chrome.storage.local.get(null, function(result) {
   console.log(result);
-  generateCoinSlots(result.coinData)
+  generateCoinSlots(result.coinData);
+  lastUpdate(result.lastUpdate);
 });
-
 
 //updateTitle(numOfCoins);
 
