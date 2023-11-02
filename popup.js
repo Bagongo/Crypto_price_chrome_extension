@@ -1,15 +1,16 @@
-const lastUpdate = (updateTime) => {
+//updates the dom element that show last time data was updated
+const updateTime = (lastUpdate) => {
    let updateSpan = document.getElementById("update-time");
-   updateSpan.innerText = updateTime;
+   updateSpan.innerText = lastUpdate;
 }
 
+//generate a coin slot with name and price for every coin in the data stored locally
 const generateCoinSlots = (data) => {
   data.forEach((coin) => {
     let id = coin.id;
     let name = coin.name;
     let price = (Math.round(coin.current_price * 100) / 100).toFixed(2);
     price = Number(price).toLocaleString();
-    console.log(typeof(price));
     price = price.toLocaleString();
     let box = document.getElementById("coin-box");
     let priceCell = document.createElement("div");
@@ -28,17 +29,21 @@ const generateCoinSlots = (data) => {
   });
 };
 
+//updates the title to show how many coins will be listed if the value is dynamic (per settings)
 const updateTitle = (num) => {
   let title = document.querySelector("#title > span:first-of-type");
   title.innerText = num;
 }
+//updateTitle(numOfCoins);
+
+//retrieve the coin data stored locally by the service worker 
+//and calls back the functions to populate the popup with the data
+//(gets executed every time the popup opens)
 chrome.storage.local.get(null, function(result) {
-  console.log(result);
   generateCoinSlots(result.coinData);
-  lastUpdate(result.lastUpdate);
+  updateTime(result.lastUpdate);
 });
 
-//updateTitle(numOfCoins);
 
 
 

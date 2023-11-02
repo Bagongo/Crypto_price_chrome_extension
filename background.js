@@ -25,6 +25,7 @@ const getTopCoins = (num) => {
     fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${num}&page=1&sparkline=false`)
     .then(response => response.json())
     .then(data => {
+        console.log(data);
         let localData = {coinData: data, lastUpdate: returnCurrentTime()};
         console.log(localData);
         chrome.storage.local.set(localData);
@@ -44,9 +45,8 @@ const refreshBadge = () => {
     let url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&precision=2"
     fetch(url).then(response => response.json()).then(response => {
         let price = formatPrice(response["bitcoin"]["usd"]);
-        let currTime = new Date();
         chrome.action.setBadgeText({text: price});
-        console.log("badge refreshed at: " + currTime.toLocaleString());
+        console.log("badge refreshed at: " + returnCurrentTime());
     });
 };
 
