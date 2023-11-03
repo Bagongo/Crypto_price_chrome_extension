@@ -35,8 +35,8 @@ const getTopCoins = (num) => {
 
 //formats the price to be shown in proper shortened version on the ext badge  
 const formatPrice = n => {
-    if (n >= 1e6) return String(+(n / 1e6).toFixed(1)) + "M";
-    if (n >= 1e3) return String(+(n / 1e3).toFixed(1)) + "K";
+    if (n >= 1e6) return String(+(n / 1e6).toFixed(1)); //add '+ "M"' if logic allows longer text to fit in the badge;
+    if (n >= 1e3) return String(+(n / 1e3).toFixed(1)); //add '+ "K"' if logic allows longer text to fit in the badge;
     if (n < 1e3) return String(n);
 };
 
@@ -69,3 +69,4 @@ initApp();
 setInterval(() => refreshBadge(), 1000 * dataRefreshRate);
 //refresh coin data routine
 setInterval(() => getTopCoins(numOfTopCoins), 1000 * dataRefreshRate);
+
