@@ -5,7 +5,7 @@
     "manifest_version" : 3,
     "action": {
         "default_popup": "popup.html",
-        "default_icon": "logo.png"
+        "default_icon": "imgs/btc_logo.png"
     },
     "background": {
         "service_worker": "background.js"
@@ -16,7 +16,10 @@
       "host_permissions": [
         "https://api.coingecko.com/"
       ],
-    "icons": {
-        "128": "logo.png"
+      "icons": {
+        "16": "imgs/btc_logo.png",
+        "32": "imgs/btc_logo.png",
+        "48": "imgs/btc_logo.png",
+        "128": "imgs/btc_logo.png"
     }
 }
