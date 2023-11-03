@@ -25,6 +25,9 @@ header{
 header > h1,h2,h3,h4,h5,h6{
     white-space: nowrap;
 }
+#title {
+    margin: 0px 15px;
+}
 
 #coin-box {
     display: flex;
@@ -59,24 +62,39 @@ footer {
     margin: 15px 0 -20px 0;
 }
 
-.updater {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
+
 
 #update-time {
     margin: 0 0 0 4px;
 }
 
+.updater, .credit {
+    display: block;
+    text-align: center;
+}
 .credit {
     margin-top: -15px;
     color: #48dde8;
 } 
 
-#title {
-    margin: 0px 15px;
+.credit:hover{
+    color: #f1a81e;
 }
 
+.credit-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin: 3px 0 0 0;
+}
+   
+   .credit-link:hover {
+    color: rgb(173, 119, 119);
+}  
+
+   .credit-logo {
+    width: 8%;
+    height: auto;
+    vertical-align: middle;
+}

@@ -17,9 +17,9 @@
         "https://api.coingecko.com/"
       ],
       "icons": {
-        "16": "imgs/btc_logo.png",
-        "32": "imgs/btc_logo.png",
-        "48": "imgs/btc_logo.png",
-        "128": "imgs/btc_logo.png"
+        "16": "imgs/icons/btc_logo_16.png",
+        "32": "imgs/icons/btc_logo_32.png",
+        "48": "imgs/icons/btc_logo_48.png",
+        "128": "imgs/icons/btc_logo_128.png"
     }
 }
