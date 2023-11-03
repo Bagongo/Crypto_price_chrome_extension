@@ -63,10 +63,10 @@ let numOfTopCoins = 3;
 //handles refresh rate of data
 const dataRefreshRate = 60;
 
-initApp();
+//initApp();
 
 //refresh badge routine
-setInterval(() => refreshBadge(), 1000 * dataRefreshRate);
+//setInterval(() => refreshBadge(), 1000 * dataRefreshRate);
 //refresh coin data routine
 setInterval(() => getTopCoins(numOfTopCoins), 1000 * dataRefreshRate);
 
