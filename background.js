@@ -59,7 +59,7 @@ const refreshBadge = () => {
 };
 
 //sets how many top coins to fetch
-let numOfTopCoins = 3;
+let numOfTopCoins = 10;
 //handles refresh rate of data
 const dataRefreshRate = 60;
 

@@ -40,6 +40,7 @@ const updateTitle = (num) => {
 //and calls back the functions to populate the popup with the data
 //(gets executed every time the popup opens)
 chrome.storage.local.get(null, function(result) {
+  console.log(result.coinData);
   generateCoinSlots(result.coinData);
   updateTime(result.lastUpdate);
 });
