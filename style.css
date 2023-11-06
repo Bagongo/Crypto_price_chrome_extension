@@ -1,3 +1,6 @@
+:root {
+    --link-hovered: #f1a81e;
+  }
 body {
     width: fit-content;
     background-color: #1B73E8;
@@ -37,7 +40,7 @@ header > h1,h2,h3,h4,h5,h6{
 #coin-box {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     justify-content: safe center;
     min-height: 150px;
     max-height: 250px;
@@ -67,7 +70,7 @@ header > h1,h2,h3,h4,h5,h6{
 }
 
 .coin-name > a:hover{
-    color: #f1a81e;
+    color: var(--link-hovered);
 }
 
 footer {
@@ -93,7 +96,7 @@ footer {
 } 
 
 .credit:hover{
-    color: #f1a81e;
+    color: var(--link-hovered);
 }
 
 .credit-link {
