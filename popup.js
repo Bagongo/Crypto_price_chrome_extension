@@ -36,7 +36,11 @@ const generateCoinSlots = (data, num) => {
      h3.appendChild(rankSpan);
      let nameSpan = document.createElement("span");
      nameSpan.classList.add("coin-name");
-     nameSpan.innerText = abbreviate(coin.name, maxChars);
+     let link = document.createElement("a");
+     link.setAttribute("href", `https://www.coingecko.com/en/coins/${coin.id}`);
+     link.setAttribute("target", "_blank");
+     link.innerText = abbreviate(coin.name, maxChars);
+     nameSpan.appendChild(link);
      h3.appendChild(nameSpan);
     let priceSpan = document.createElement("span");
      priceSpan.classList.add("coin-price");

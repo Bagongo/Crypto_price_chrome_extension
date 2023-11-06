@@ -61,6 +61,15 @@ header > h1,h2,h3,h4,h5,h6{
     color: #48dde8;
 }
 
+.coin-name > a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.coin-name > a:hover{
+    color: #f1a81e;
+}
+
 footer {
     display: flex;
     flex-direction: column;
@@ -95,9 +104,7 @@ footer {
     margin: 3px 0 0 0;
 }
    
-   .credit-link:hover {
-    color: rgb(173, 119, 119);
-}  
+ 
 
    .credit-logo {
     width: 5%;
