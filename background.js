@@ -1,5 +1,6 @@
-//sets how many top coins to fetch
-let numOfTopCoins = 10;
+//hardcoded number of how many top coins to fetch
+//(use a large number and narrow how many coins aare displayed in popup.js
+let numOfTopCoins = 100;
 //handles refresh rate of data
 const dataRefreshRate = 60;
 
