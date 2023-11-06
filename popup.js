@@ -1,8 +1,18 @@
+//the number of chars to what a coin name must be abbreviated to (to contain popup width)
+const maxChars = 10;
+
 //updates the dom element that show last time data was updated
 const updateTime = (lastUpdate) => {
    let updateSpan = document.getElementById("update-time");
    updateSpan.innerText = lastUpdate;
 }
+//returns an abbreviated and dotted string
+const abbreviate = (str, length) => {
+    if (str.length <= length) {
+      return str;
+    }
+    return str.substring(0, length) + "...";
+};
 
 //generate a coin slot with name and price for every coin in the data stored locally
 const generateCoinSlots = (data) => {
@@ -16,7 +26,7 @@ const generateCoinSlots = (data) => {
     let priceCell = document.createElement("div");
     priceCell.classList.add("price-cell");
     let nameH3 = document.createElement("h3");
-    nameH3.innerText = name;
+    nameH3.innerText = abbreviate(name, maxChars);
     priceCell.appendChild(nameH3);
     let priceH3 = document.createElement("h3");
     let priceSpan = document.createElement("span");

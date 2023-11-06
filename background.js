@@ -1,3 +1,8 @@
+//sets how many top coins to fetch
+let numOfTopCoins = 10;
+//handles refresh rate of data
+const dataRefreshRate = 60;
+
 // Check whether new version is installed and intialize data + badges
 chrome.runtime.onInstalled.addListener(function(details){
     if(details.reason == "install"){
@@ -57,11 +62,6 @@ const refreshBadge = () => {
         console.error("There was a problem with the fetch operation:", error);
     });
 };
-
-//sets how many top coins to fetch
-let numOfTopCoins = 10;
-//handles refresh rate of data
-const dataRefreshRate = 60;
 
 initApp();
 
