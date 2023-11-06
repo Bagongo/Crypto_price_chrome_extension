@@ -2,6 +2,8 @@
 const maxChars = 10;
 //the number of how many coins will displayed
 const numOfcoinsToDisplay = 10;
+//the counter value to match coins against (can implement dynamicity)
+const counterValue = "$";
 
 //updates the dom element that show last time data was updated
 const updateTime = (lastUpdate) => {
@@ -20,24 +22,26 @@ const abbreviate = (str, length) => {
 const generateCoinSlots = (data, num) => {
   for (let i = 0; i < num; i++) {
      let coin = data[i];
-     let id = coin.id;
-     let name = coin.name;
      let price = (Math.round(coin.current_price * 100) / 100).toFixed(2);
      price = Number(price).toLocaleString();
-     price = price.toLocaleString();
      let box = document.getElementById("coin-box");
      let priceCell = document.createElement("div");
      priceCell.classList.add("price-cell");
-     let nameH3 = document.createElement("h3");
-     nameH3.innerText = abbreviate(name, maxChars);
-     priceCell.appendChild(nameH3);
-     let priceH3 = document.createElement("h3");
-     let priceSpan = document.createElement("span");
-     priceSpan.classList.add("coin");
-     priceSpan.setAttribute("id", id);
-     priceSpan.innerText = "$" + price;
-     priceH3.appendChild(priceSpan);
-     priceCell.appendChild(priceH3);
+     priceCell.setAttribute("id", coin.id);
+     let h3 = document.createElement("h3");
+     priceCell.appendChild(h3);
+     let rankSpan = document.createElement("span");
+     rankSpan.classList.add("coin-rank");
+     rankSpan.innerText = coin.market_cap_rank + " "; 
+     h3.appendChild(rankSpan);
+     let nameSpan = document.createElement("span");
+     nameSpan.classList.add("coin-name");
+     nameSpan.innerText = abbreviate(coin.name, maxChars);
+     h3.appendChild(nameSpan);
+    let priceSpan = document.createElement("span");
+     priceSpan.classList.add("coin-price");
+     priceSpan.innerText = counterValue + price;
+     h3.appendChild(priceSpan);
      box.appendChild(priceCell);
   }
  };
@@ -57,7 +61,6 @@ chrome.storage.local.get(null, function(result) {
   updateTitle(numOfcoinsToDisplay);
   updateTime(result.lastUpdate);
 });
-
 
 
 
