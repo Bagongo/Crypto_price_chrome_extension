@@ -36,7 +36,7 @@ const getTopCoins = (num) => {
         chrome.storage.local.set(localData);
         console.log("coin data refreshed at: " + returnCurrentTime());
     })
-    .catch(error => console.error(error));
+    .catch(error => console.error("There a was a problem while fetcing the coin data.", error));
   };
 
 //formats the price to be shown in proper shortened version on the ext badge  
@@ -60,7 +60,7 @@ const refreshBadge = () => {
         console.log("badge refreshed at: " + returnCurrentTime());
     })
     .catch(error => {
-        console.error("There was a problem with the fetch operation:", error);
+        console.error("There was a problem with the badge update.", error);
     });
 };
 
