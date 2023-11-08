@@ -1,7 +1,7 @@
 //the number of chars to what a coin name must be abbreviated to (to contain popup width)
 const maxChars = 10;
 //the number of how many coins will displayed
-const numOfcoinsToDisplay = 10;
+const numOfcoinsToDisplay = 100;
 //the counter value to match coins against (can implement dynamicity)
 const counterValue = "$";
 
@@ -22,8 +22,8 @@ const abbreviate = (str, length) => {
 const generateCoinSlots = (data, num) => {
   for (let i = 0; i < num; i++) {
      let coin = data[i];
-     let price = (Math.round(coin.current_price * 100) / 100).toFixed(2);
-     price = Number(price).toLocaleString();
+     let price = (Math.round(Number(coin.current_price) * 100) / 100).toFixed(2);
+     price = price.toLocaleString();
      let box = document.getElementById("coin-box");
      let priceCell = document.createElement("div");
      priceCell.classList.add("price-cell");

@@ -29,7 +29,7 @@ const returnCurrentTime = () => {
 
 //fetch data for the top coins
 const getTopCoins = (num) => {
-    fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${num}&page=1&sparkline=false`)
+    fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${num}&page=1&sparkline=false&precision=8`)
     .then(response => response.json())
     .then(data => {
         let localData = {coinData: data, lastUpdate: returnCurrentTime()};
