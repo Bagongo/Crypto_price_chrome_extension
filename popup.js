@@ -18,6 +18,8 @@ const abbreviate = (str, length) => {
     return str.substring(0, length) + "...";
 };
 
+
+
 //generate a coin slot with name and price for every coin in the data stored locally
 const generateCoinSlots = (data, num) => {
   for (let i = 0; i < num; i++) {

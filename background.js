@@ -1,6 +1,8 @@
 //hardcoded number of how many top coins to fetch
 //(use a large number and narrow how many coins aare displayed in popup.js
 let numOfTopCoins = 100;
+//harcoded calue for decimal precision of prices to fetch
+let decimalPrecision = 8;
 //handles refresh rate of data
 const dataRefreshRate = 60;
 
@@ -28,8 +30,8 @@ const returnCurrentTime = () => {
 };
 
 //fetch data for the top coins
-const getTopCoins = (num) => {
-    fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${num}&page=1&sparkline=false&precision=8`)
+const getTopCoins = (num, precision) => {
+    fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${num}&page=1&sparkline=false&${precision}=8`)
     .then(response => response.json())
     .then(data => {
         let localData = {coinData: data, lastUpdate: returnCurrentTime()};
@@ -69,5 +71,5 @@ initApp();
 //refresh badge routine
 setInterval(() => refreshBadge(), 1000 * dataRefreshRate);
 //refresh coin data routine
-setInterval(() => getTopCoins(numOfTopCoins), 1000 * dataRefreshRate);
+setInterval(() => getTopCoins(numOfTopCoins, decimalPrecision), 1000 * dataRefreshRate);
 
