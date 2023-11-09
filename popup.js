@@ -2,6 +2,8 @@
 const maxChars = 10;
 //the number of how many coins will displayed
 const numOfcoinsToDisplay = 100;
+// the number of max precision to decimal notation in prices
+const maxPrecision = 8;
 //the counter value to match coins against (can implement dynamicity)
 const counterValue = "$";
 
@@ -37,7 +39,7 @@ const formatPrice = (price, maxPrecision) => {
 const generateCoinSlots = (data, num) => {
   for (let i = 0; i < num; i++) {
      let coin = data[i];
-     let price = formatPrice(coin.current_price, 8);
+     let price = formatPrice(coin.current_price, maxPrecision);
      let box = document.getElementById("coin-box");
      let priceCell = document.createElement("div");
      priceCell.classList.add("price-cell");
