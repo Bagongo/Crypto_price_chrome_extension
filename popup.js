@@ -18,14 +18,26 @@ const abbreviate = (str, length) => {
     return str.substring(0, length) + "...";
 };
 
-
+const formatPrice = (price, maxPrecision) => {
+    if (price <= 0) {
+        let formattedPrice = price.toFixed(maxPrecision);
+        return formattedPrice; 
+    }
+    if (price > 0.01) {
+        let formattedPrice = (Math.round(Number(price) * 100) / 100).toFixed(2);
+        return formattedPrice.toLocaleString();
+    }
+    else {
+        let formattedPrice = price.toFixed(1-Math.floor(Math.log(price)/Math.log(10)));
+        return formattedPrice;
+    }
+};
 
 //generate a coin slot with name and price for every coin in the data stored locally
 const generateCoinSlots = (data, num) => {
   for (let i = 0; i < num; i++) {
      let coin = data[i];
-     let price = (Math.round(Number(coin.current_price) * 100) / 100).toFixed(2);
-     price = price.toLocaleString();
+     let price = formatPrice(coin.current_price, 8);
      let box = document.getElementById("coin-box");
      let priceCell = document.createElement("div");
      priceCell.classList.add("price-cell");
