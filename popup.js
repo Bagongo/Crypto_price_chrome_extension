@@ -12,6 +12,7 @@ const updateTime = (lastUpdate) => {
    let updateSpan = document.getElementById("update-time");
    updateSpan.innerText = lastUpdate;
 }
+
 //returns an abbreviated and dotted string
 const abbreviate = (str, length) => {
     if (str.length <= length) {

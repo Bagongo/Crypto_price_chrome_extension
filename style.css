@@ -112,6 +112,10 @@ footer {
     filter: brightness(0) invert(1);
 }
 
+.settings-button:hover {
+    filter: hue-rotate(1deg); /* this line adds the desired effect */
+}
+
 #update-time {
     margin: 0 0 0 4px;
 }
