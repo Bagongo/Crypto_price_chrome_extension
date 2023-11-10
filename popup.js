@@ -13,12 +13,18 @@ const updateTime = (lastUpdate) => {
    updateSpan.innerText = lastUpdate;
 }
 
-//selects and swithces classes to the setting panel to bring it on and off window
-const settingPanel = document.getElementById("options");
+//selects and swithces classes to the setting panel to bring it in and off window
+const settingsPanel = document.getElementById("options");
 const settingsBTN = document.getElementsByClassName("settings-button")[0].addEventListener("click", ()=>{
-   settingPanel.classList.remove("closed");
-   settingPanel.classList.add("opened");
+  settingsPanel.classList.remove("closed");
+  settingsPanel.classList.add("opened");
 });
+const quitSettingsBTN = document.getElementsByClassName("quit-settings")[0].addEventListener("click", ()=>{
+  settingsPanel.classList.remove("opened");
+  settingsPanel.classList.add("closed");
+});
+
+
 //returns an abbreviated and dotted string
 const abbreviate = (str, length) => {
     if (str.length <= length) {
