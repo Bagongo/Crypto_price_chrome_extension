@@ -107,13 +107,23 @@ footer {
     top: 50%;
     transform: translateY(-50%);
     left: 5%;
-    max-width: 12%;
-    height: auto;
-    filter: brightness(0) invert(1);
+    width: 35px;
+    height: 35px;
+    background: url('imgs/settings_64.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
+
+
 .settings-button:hover {
-    filter: hue-rotate(1deg); /* this line adds the desired effect */
+    background: url('imgs/settings_64_hovered.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 #update-time {
