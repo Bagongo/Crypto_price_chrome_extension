@@ -8,6 +8,7 @@ body {
     padding: 0;
     margin: 0;
     border: 4px solid white;
+    font-family: Verdana, Helvetica, Tahoma, sans-serif;
 }
 
 .container {
@@ -15,7 +16,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: Verdana, Tahoma, sans-serif;
     max-height: 500px;
     margin: 15px 0;
 }
@@ -28,24 +28,33 @@ body {
     justify-content: flex-start;
     width: 100%;
     height: 100%;
-    background-color: red;
+    background-color: #FF8A00;
     margin: 0;
     z-index: 1000;
+}
+
+#options.start-pos{
+    position: absolute;
+    bottom: 100%;
+    left: 0;
 }
 
 #options.closed{
     position: absolute;
     bottom: 100%;
     left: 0;
+    animation-name: slideUp;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
 }
 
 #options.opened{
     position: absolute;
     left: 0%;
-    animation-name: slideFromAbove;
+    bottom: 0%;
+    animation-name: slideDown;
     animation-duration: 0.25s;
     animation-iteration-count: 1;
-    bottom: 0%;
 }
 
 .quit-settings{
@@ -56,6 +65,14 @@ body {
     width: 35px;
     height: 35px;
     background: url(imgs/arrow-up-96.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.quit-settings:hover{
+    background: url(imgs/arrow-upper-96.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -140,8 +157,6 @@ footer {
     background-position: center;
 }
 
-
-
 .settings-button:hover {
     background: url('imgs/settings_64_hovered.png');
     background-size: contain;
@@ -174,16 +189,20 @@ footer {
     text-decoration: none;
     margin: 3px 0 0 0;
 }
-   
- 
 
-   .credit-logo {
+.credit-logo {
     width: 5%;
     height: auto;
     vertical-align: middle;
 }
 
-@keyframes slideFromAbove {
+@keyframes slideDown {
     from {bottom: 100%;}
     to {bottom: 0%;}
-  }
+}
+
+@keyframes slideUp {
+    from {bottom: 0%;}
+    to {bottom: 100%;}
+}
+
