@@ -10,10 +10,22 @@ body {
     border: 4px solid white;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana, Tahoma, sans-serif;
+    max-height: 500px;
+    margin: 15px 0;
+}
+
 #options{
     width: 100%;
     height: 100%;
     background-color: red;
+    margin: 0;
+    z-index: 1000;
 }
 
 #options.closed{
@@ -24,18 +36,11 @@ body {
 
 #options.opened{
     position: absolute;
-    top: 0%;
     left: 0%;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: Verdana, Tahoma, sans-serif;
-    max-height: 500px;
-    margin: 15px 0;
+    animation-name: slideFromAbove;
+    animation-duration: 0.25s;
+    animation-iteration-count: 1;
+    bottom: 0%;
 }
 
 header{
@@ -158,3 +163,8 @@ footer {
     height: auto;
     vertical-align: middle;
 }
+
+@keyframes slideFromAbove {
+    from {bottom: 100%;}
+    to {bottom: 0%;}
+  }

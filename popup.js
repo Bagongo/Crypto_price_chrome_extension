@@ -13,6 +13,12 @@ const updateTime = (lastUpdate) => {
    updateSpan.innerText = lastUpdate;
 }
 
+//selects and swithces classes to the setting panel to bring it on and off window
+const settingPanel = document.getElementById("options");
+const settingsBTN = document.getElementsByClassName("settings-button")[0].addEventListener("click", ()=>{
+   settingPanel.classList.remove("closed");
+   settingPanel.classList.add("opened");
+});
 //returns an abbreviated and dotted string
 const abbreviate = (str, length) => {
     if (str.length <= length) {
