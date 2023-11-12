@@ -38,31 +38,40 @@ const formatPrice = (price, maxPrecision) => {
 //generate a coin slot with name and price for every coin in the data stored locally
 const generateCoinSlots = (data, num) => {
   for (let i = 0; i < num; i++) {
-     let coin = data[i];
-     let price = formatPrice(coin.current_price, maxPrecision);
-     let box = document.getElementById("coin-box");
-     let priceCell = document.createElement("div");
-     priceCell.classList.add("price-cell");
-     priceCell.setAttribute("id", coin.id);
-     let h3 = document.createElement("h3");
-     priceCell.appendChild(h3);
-     let rankSpan = document.createElement("span");
-     rankSpan.classList.add("coin-rank");
-     rankSpan.innerText = coin.market_cap_rank + " "; 
-     h3.appendChild(rankSpan);
-     let nameSpan = document.createElement("span");
-     nameSpan.classList.add("coin-name");
-     let link = document.createElement("a");
-     link.setAttribute("href", `https://www.coingecko.com/en/coins/${coin.id}`);
-     link.setAttribute("target", "_blank");
-     link.innerText = abbreviate(coin.name, maxChars);
-     nameSpan.appendChild(link);
-     h3.appendChild(nameSpan);
+    let coin = data[i];
+    let price = formatPrice(coin.current_price, maxPrecision);
+    let box = document.getElementById("coin-box");
+    let priceCell = document.createElement("div");
+    priceCell.classList.add("price-cell");
+    priceCell.setAttribute("id", coin.id);
+    let h3 = document.createElement("h3");
+    priceCell.appendChild(h3);
+    let rankSpan = document.createElement("span");
+    rankSpan.classList.add("coin-rank");
+    rankSpan.innerText = coin.market_cap_rank + " "; 
+    h3.appendChild(rankSpan);
+    let nameSpan = document.createElement("span");
+    nameSpan.classList.add("coin-name");
+    let link = document.createElement("a");
+    link.setAttribute("href", `https://www.coingecko.com/en/coins/${coin.id}`);
+    link.setAttribute("target", "_blank");
+    let coinName = abbreviate(coin.name, maxChars);
+    if(coinName ==! coin.name) {
+      let tooltip = document.createElement("div");
+      tooltip.classList.add("tooltip");
+      tooltip.innerText = coin.name;
+      priceCell.appendChild(tooltip);
+    } 
+    else {
+      link.innerText = coinName;
+    }
+    nameSpan.appendChild(link);
+    h3.appendChild(nameSpan);
     let priceSpan = document.createElement("span");
-     priceSpan.classList.add("coin-price");
-     priceSpan.innerText = counterValue + price;
-     h3.appendChild(priceSpan);
-     box.appendChild(priceCell);
+    priceSpan.classList.add("coin-price");
+    priceSpan.innerText = counterValue + price;
+    h3.appendChild(priceSpan);
+    box.appendChild(priceCell);
   }
  };
 
