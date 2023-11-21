@@ -75,14 +75,20 @@ header > h1,h2,h3,h4,h5,h6{
 }
 
 .tooltip{
+    display: none;
     position: absolute;
-    bottom: 80%;
-    left: 10%;
-    padding: .25rem;
-    color: darkcyan;
+    font-size: .7rem;
+    bottom: 70%;
+    left: 8%;
+    padding: 0.1rem 0.2rem;
+    color: gray;
     text-shadow: none;
     border-radius: 1px;
-    background-color: aliceblue;
+    background-color: whitesmoke;
+}
+
+.price-cell > h3:hover + .tooltip {
+    display: block;
 }
 
 footer {
