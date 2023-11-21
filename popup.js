@@ -56,15 +56,13 @@ const generateCoinSlots = (data, num) => {
     link.setAttribute("href", `https://www.coingecko.com/en/coins/${coin.id}`);
     link.setAttribute("target", "_blank");
     let coinName = abbreviate(coin.name, maxChars);
-    if(coinName ==! coin.name) {
+      if(coinName !== coin.name) {
       let tooltip = document.createElement("div");
       tooltip.classList.add("tooltip");
       tooltip.innerText = coin.name;
       priceCell.appendChild(tooltip);
     } 
-    else {
-      link.innerText = coinName;
-    }
+    link.innerText = coinName;
     nameSpan.appendChild(link);
     h3.appendChild(nameSpan);
     let priceSpan = document.createElement("span");
