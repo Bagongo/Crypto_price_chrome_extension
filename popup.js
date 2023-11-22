@@ -1,11 +1,22 @@
 //the number of chars to what a coin name must be abbreviated to (to contain popup width)
 const maxChars = 10;
 //the number of how many coins will displayed
-const numOfcoinsToDisplay = 100;
+let numOfcoinsToDisplay = 100;
 // the number of max precision to decimal notation in prices
 const maxPrecision = 8;
 //the counter value to match coins against (can implement dynamicity)
 const counterValue = "$";
+//how many coins to display (as a maximum in settings)
+const maxCoins = 100;
+//(in settings) gets the input for number of coins to be shown and sanitize it (and set its min/max values)
+const numofcoinsInput = document.getElementById('input-numofcoins');
+numofcoinsInput.min = 1;
+numofcoinsInput.max = maxCoins;
+numofcoinsInput.addEventListener('input', (event) => {
+  let input = Math.max(Math.min(parseInt(event.target.value), maxCoins), 1);
+  event.target.value = isNaN(input) ? '' : input;
+  console.log(input, " ", event.target.value);
+});
 
 //updates the dom element that show last time data was updated
 const updateTime = (lastUpdate) => {
