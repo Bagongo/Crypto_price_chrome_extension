@@ -1,6 +1,6 @@
 //hardcoded number of how many top coins to fetch
 //(use a large number and narrow how many coins aare displayed in popup.js
-let numOfTopCoins = 100;
+let numOfTopCoinsToFetch = 100;
 //harcoded calue for decimal precision of prices to fetch
 let decimalPrecision = 8;
 //handles refresh rate of data
@@ -14,13 +14,16 @@ chrome.runtime.onInstalled.addListener(function(details){
         var thisVersion = chrome.runtime.getManifest().version;
         console.log("Updated from " + details.previousVersion + " to " + thisVersion + "!");
     }
+    
+    initApp();
 });
 
 //initialize badge and data
 const initApp = () => {
     chrome.action.setBadgeBackgroundColor({ color:'#1B73E8'});
+    chrome.storage.local.set({"numOfcoinsToDisplay" : 100});
     refreshBadge();
-    getTopCoins(numOfTopCoins);
+    getTopCoins(numOfTopCoinsToFetch);
 };
 
 //returns the current time in proper format
@@ -71,5 +74,5 @@ initApp();
 //refresh badge routine
 setInterval(() => refreshBadge(), 1000 * dataRefreshRate);
 //refresh coin data routine
-setInterval(() => getTopCoins(numOfTopCoins, decimalPrecision), 1000 * dataRefreshRate);
+setInterval(() => getTopCoins(numOfTopCoinsToFetch, decimalPrecision), 1000 * dataRefreshRate);
 

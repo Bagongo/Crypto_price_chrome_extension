@@ -1,28 +1,21 @@
 //the number of chars to what a coin name must be abbreviated to (to contain popup width)
 const maxChars = 10;
-//the number of how many coins will displayed
-let numOfcoinsToDisplay = 100;
 // the number of max precision to decimal notation in prices
 const maxPrecision = 8;
 //the counter value to match coins against (can implement dynamicity)
 const counterValue = "$";
 //how many coins to display (as a maximum in settings)
 const maxCoins = 100;
+
 //(in settings) gets the input for number of coins to be shown and sanitize it (and set its min/max values)
-const numofcoinsInput = document.getElementById('input-numofcoins');
-numofcoinsInput.min = 1;
-numofcoinsInput.max = maxCoins;
-numofcoinsInput.addEventListener('input', (event) => {
+const numOfCoinsInput = document.getElementById('input-numofcoins');
+numOfCoinsInput.min = 1;
+numOfCoinsInput.max = maxCoins;
+numOfCoinsInput.addEventListener('input', (event) => {
   let input = Math.max(Math.min(parseInt(event.target.value), maxCoins), 1);
   event.target.value = isNaN(input) ? '' : input;
-  console.log(input, " ", event.target.value);
+  chrome.storage.local.set({"numOfcoinsToDisplay":input});
 });
-
-//updates the dom element that show last time data was updated
-const updateTime = (lastUpdate) => {
-   let updateSpan = document.getElementById("update-time");
-   updateSpan.innerText = lastUpdate;
-}
 
 //selects and swithces classes to the setting panel to bring it in and off window
 const settingsPanel = document.getElementById("options");
@@ -33,8 +26,8 @@ const settingsBTN = document.getElementsByClassName("settings-button")[0].addEve
 const quitSettingsBTN = document.getElementsByClassName("quit-settings")[0].addEventListener("click", ()=>{
   settingsPanel.classList.remove("opened");
   settingsPanel.classList.add("closed");
+  updatePopup();
 });
-
 
 //returns an abbreviated and dotted string
 const abbreviate = (str, length) => {
@@ -59,6 +52,14 @@ const formatPrice = (price, maxPrecision) => {
     }
 };
 
+//clearas the container for all the coin slots
+const clearCoinslots = () => {
+  let box = document.getElementById("coin-box");
+  while (box.firstChild) {
+    box.removeChild(box.firstChild);
+  }
+};
+
 //generate a coin slot with name and price for every coin in the data stored locally
 const generateCoinSlots = (data, num) => {
   for (let i = 0; i < num; i++) {
@@ -66,7 +67,7 @@ const generateCoinSlots = (data, num) => {
     let price = formatPrice(coin.current_price, maxPrecision);
     let box = document.getElementById("coin-box");
     let priceCell = document.createElement("div");
-    priceCell.classList.add("price-cell");
+    priceCell.classList.add("coin-cell");
     priceCell.setAttribute("id", coin.id);
     let h3 = document.createElement("h3");
     priceCell.appendChild(h3);
@@ -103,15 +104,27 @@ const updateTitle = (num) => {
   title.innerText = num;
 }
 
+//updates the dom element that show last time data was updated
+const updateTime = (lastUpdate) => {
+  let updateSpan = document.getElementById("update-time");
+  updateSpan.innerText = lastUpdate;
+}
+
 //retrieve the coin data stored locally by the service worker 
 //and calls back the functions to populate the popup with the data
 //(gets executed every time the popup opens)
-chrome.storage.local.get(null, function(result) {
-  console.log(result.coinData);
-  generateCoinSlots(result.coinData, numOfcoinsToDisplay);
-  updateTitle(numOfcoinsToDisplay);
-  updateTime(result.lastUpdate);
-});
+const updatePopup = () => {
+  chrome.storage.local.get(null, function(result) {
+    console.log(result.coinData);
+    numOfCoinsInput.value = result.numOfcoinsToDisplay;
+    clearCoinslots();
+    generateCoinSlots(result.coinData, result.numOfcoinsToDisplay);
+    updateTitle(result.numOfcoinsToDisplay);
+    updateTime(result.lastUpdate);
+  });
+};
+
+updatePopup();
 
 
 
