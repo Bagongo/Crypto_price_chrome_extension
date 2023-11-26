@@ -108,6 +108,7 @@ header > h1,h2,h3,h4,h5,h6{
     justify-content: safe center;
     min-height: 150px;
     max-height: 250px;
+    min-width: 215px;
     padding: 0 15px 0 15px;
     margin: 15px 5px 0 5px;
     overflow-y: scroll;

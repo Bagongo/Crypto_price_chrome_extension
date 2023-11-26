@@ -100,8 +100,10 @@ const generateCoinSlots = (data, num) => {
 
 //updates the title to show how many coins will be listed if the value is dynamic (per settings)
 const updateTitle = (num) => {
-  let title = document.querySelector("#title > span:first-of-type");
-  title.innerText = num;
+  let spanElements = document.querySelectorAll("#title > span");
+  spanElements[0].innerText = num;
+  let coinConjugation = num > 1 ? "Coins" : "Coin";
+  spanElements[1].innerText = coinConjugation;
 }
 
 //updates the dom element that show last time data was updated
