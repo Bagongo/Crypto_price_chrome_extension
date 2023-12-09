@@ -37,6 +37,7 @@ const abbreviate = (str, length) => {
     return str.substring(0, length) + "...";
 };
 
+//formats price to show only two decimals for coins over 1$ and up to fixed decimals for the others
 const formatPrice = (price, maxPrecision) => {
     if (price <= 0) {
         let formattedPrice = price.toFixed(maxPrecision);
