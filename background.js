@@ -43,9 +43,21 @@ const getTopCoins = (num, precision) => {
 
 //formats the price to be shown in proper shortened version on the ext badge  
 const formatPrice = n => {
-    if (n >= 1e6) return String(+(n / 1e6).toFixed(1)); //add '+ "M"' if logic allows longer text to fit in the badge;
-    if (n >= 1e3) return String(+(n / 1e3).toFixed(1)); //add '+ "K"' if logic allows longer text to fit in the badge;
-    if (n < 1e3) return String(n);
+    let price = n;
+    let magnitude = "";
+    if (price >= 1e6){
+        price = (+(price / 1e6).toFixed(1)); //add '+ "M"' if logic allows longer text to fit in the badge;
+        magnitude = "m";
+    }     
+    else if (price >= 1e3) {
+        price = (+(price / 1e3).toFixed(1)); //add '+ "K"' if logic allows longer text to fit in the badge;
+        magnitude = "k";
+    }
+    else if (price < 1e3){
+        price = Math.round(price);
+    }
+    price = String(price);
+    return price.length <= 3 ? price + magnitude : price;
 };
 
 //refresh bitcoin price to be shown in the badge 
