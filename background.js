@@ -1,5 +1,5 @@
 //hardcoded number of how many top coins to fetch
-//(use a large number and narrow how many coins aare displayed in popup.js
+//(use a large number and narrow how many coins are displayed in popup.js
 let numOfTopCoins = 100;
 //harcoded calue for decimal precision of prices to fetch
 let decimalPrecision = 8;
